@@ -15,10 +15,10 @@ public class FileUtil {
         BufferedWriter bw = null;
 
         try {
-            fos = new FileOutputStream(new File(fileName));
+            fos = new FileOutputStream(new File(fileName),true);
             osw = new OutputStreamWriter(fos);
             bw = new BufferedWriter(osw);
-            bw.write(content);
+            bw.append(content);
         } catch (IOException e) {
             e.printStackTrace();
 
@@ -31,6 +31,23 @@ public class FileUtil {
 
 
     }
+
+    public static void createDir(String path){
+        File dir=new File(path);
+        if(!dir.exists())
+            dir.mkdir();
+    }
+
+    public static void createFile(String fileName){
+        File file = new File(fileName);
+        try {
+            if (!file.exists())
+                file.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 
     /**
